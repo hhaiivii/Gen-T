@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyện Gen T - Hành Trình 4.0</title>
+    <title>Chuyện Gen T</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        body { 
+        body {
             background: linear-gradient(135deg, #FF6F61, #FFC371);
             font-family: 'Poppins', sans-serif;
             color: #333;
@@ -16,7 +16,6 @@
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
-
         body.dark-mode {
             background-color: #1a1a1a;
             color: #f1f1f1;
@@ -27,6 +26,12 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #FF6F61;
         }
 
         nav {
@@ -45,9 +50,9 @@
             color: #333;
             text-decoration: none;
             font-size: 18px;
+            margin: 0 10px;
             transition: color 0.3s, transform 0.3s;
             border-radius: 5px;
-            margin: 0 10px;
         }
 
         nav a:hover {
@@ -77,27 +82,44 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
-            opacity: 0; /* Đặt opacity về 0 ban đầu */
-            transition: opacity 0.5s; /* Thêm hiệu ứng chuyển đổi cho opacity */
         }
 
-        main.visible {
-            opacity: 1; /* Khi thêm class 'visible', opacity sẽ chuyển thành 1 */
-        }
-
-        article {
+        .hero {
+            text-align: center;
             margin-bottom: 20px;
             padding: 20px;
-            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s; /* Thêm hiệu ứng cho bài viết */
         }
 
-        article:hover {
-            transform: translateY(-5px); /* Nâng bài viết lên khi hover */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+        .hero h2 {
+            transition: color 0.3s;
+        }
+
+        .hero h2:hover {
+            color: #FF6F61; /* Hoặc một màu khác nếu bạn muốn */
+        }
+
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .post-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         #comments-section {
@@ -106,6 +128,17 @@
             border-top: 1px solid #ddd;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #comments-section h3,
+        #comments-section h4 {
+            transition: color 0.3s;
+        }
+
+        #comments-section h3:hover,
+        #comments-section h4:hover {
+            color: #FF6F61; /* Màu hiệu ứng cho tiêu đề bình luận */
         }
 
         #comments-list {
@@ -116,9 +149,14 @@
         #comments-list li {
             margin: 10px 0;
             padding: 10px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: background-color 0.3s;
+        }
+
+        #comments-list li:hover {
+            background-color: #f9f9f9;
         }
 
         .comment-meta {
@@ -126,10 +164,19 @@
             color: #777;
         }
 
-        .reply-form {
-            margin-top: 10px;
-            padding: 10px;
-            border-top: 1px solid #ddd;
+        .comment-actions {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .comment-actions button {
+            background: none;
+            border: none;
+            color: #FF6F61;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 14px;
         }
 
         input, textarea {
@@ -152,6 +199,16 @@
 
         button.submit-button:hover {
             background-color: #FFC371;
+        }
+
+        /* Hiệu ứng đổi màu cho phần nội dung giới thiệu */
+        #intro-text {
+            color: #333; /* Màu ban đầu */
+            transition: color 0.5s ease-in-out; /* Hiệu ứng chuyển màu */
+        }
+
+        #intro-text:hover {
+            color: #FF6F61; /* Màu sáng hơn khi di chuột */
         }
 
         @media (max-width: 768px) {
@@ -177,74 +234,69 @@
 </head>
 <body>
     <header>
-        <h1>Chuyện Gen T - Hành Trình 4.0</h1>
+        <h1>Giới thiệu - Chuyện Gen T</h1>
+        <button id="theme-toggle">Chuyển đổi chế độ tối</button>
         <nav>
-            <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
             <a href="about.html"><i class="fas fa-info-circle"></i> Giới thiệu</a>
-            <a href="#"><i class="fas fa-blog"></i> Blog</a>
         </nav>
     </header>
 
-    <main id="posts" class="visible">
-        <article>
-            <h2>Bài viết đầu tiên</h2>
-            <p>Đây là bài viết đầu tiên của tôi! Chào mừng đến với blog.</p>
-        </article>
-        <article>
-            <h2>Bài viết khác</h2>
-            <p>Đây là một bài viết khác nơi tôi chia sẻ ý kiến của mình.</p>
-        </article>
+    <main>
+        <div class="hero">
+            <h2>Chào mừng các bạn đến với Gen T!</h2>
+            <p>Khám phá thế giới qua lăng kính của các bạn học sinh trường T ( THPT Tùng Thiện).</p>
+        </div>
+        
+        <div class="blog-posts">
+            <article class="post-card">
+                <img src="https://i.ibb.co/R7hx6rJ/z5943895724036-c507a1caf39fcad6624d9f15b653c7aa.jpg" alt="Bài viết 1">
+                <p> để bừa</p>
+                <button class="like-button">❤️</button>
+            </article>
+            <article class="post-card">
+                <img src="https://i.ibb.co/RbnkxkQ/z5943895744990-9a93b075c3c3dcf523e959034d1aec9b.jpg" alt="Bài viết 2">
+                <p> lớp 12a12 tôi yêu</p>
+                <button class="like-button">❤️</button>
+            </article>
+            <article class="post-card">
+                <img src="https://i.ibb.co/m4JcH6F/z5943895724042-1e3a3e6a45de82d94f3a30d03396ab7d.jpg" alt="Bài viết 3">
+                <p> các thầy cô tuyệt vời</p>
+                <button class="like-button">❤️</button>
+            </article>
+        </div>
 
         <section id="comments-section">
-            <h3>Để lại bình luận:</h3>
-            <form id="comment-form">
-                <input type="text" id="name" placeholder="Tên của bạn" required>
-                <textarea id="comment" placeholder="Nội dung bình luận" required></textarea>
-                <button type="submit" class="submit-button">Gửi bình luận</button>
-            </form>
-            <h4>Bình luận:</h4>
+            <h3>Ý kiến của bạn</h3>
             <ul id="comments-list"></ul>
-        </section>
-
-        <section id="about-section">
-            <h2>Giới Thiệu về Chuyện Gen T</h2>
-            <p>Blog của chúng tôi là nơi chia sẻ những câu chuyện và trải nghiệm của thế hệ Gen Z trong thời đại 4.0.</p>
-            
-            <h3>Mục Tiêu của Blog</h3>
-            <p>Tạo ra một không gian để các bạn trẻ giao lưu và chia sẻ ý kiến về công nghệ, văn hóa và xã hội.</p>
-            
-            <h3>Các Chủ Đề Nổi Bật</h3>
-            <ul>
-                <li>Công nghệ và giáo dục</li>
-                <li>Văn hóa Gen Z</li>
-                <li>Các vấn đề xã hội hiện tại</li>
-                <li>Trải nghiệm cá nhân</li>
-            </ul>
-            
-            <h3>Tham Gia Cùng Chúng Tôi</h3>
-            <p>Hãy để lại bình luận hoặc gửi ý tưởng của bạn qua email!</p>
+            <input type="text" id="comment-input" placeholder="Viết ý kiến của bạn ở đây...">
+            <button class="submit-button" id="submit-comment">Gửi</button>
         </section>
     </main>
 
-    <button id="theme-toggle">Chuyển đổi chế độ tối</button>
     <script>
-        const toggleButton = document.getElementById('theme-toggle');
-        toggleButton.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            themeToggleButton.textContent = body.classList.contains('dark-mode') ? 'Chuyển đổi chế độ sáng' : 'Chuyển đổi chế độ tối';
         });
 
-        const form = document.getElementById('comment-form');
+        const submitButton = document.getElementById('submit-comment');
         const commentsList = document.getElementById('comments-list');
+        const commentInput = document.getElementById('comment-input');
 
-        // Load comments from Local Storage
-        window.onload = function() {
-            const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
-            savedComments.forEach(displayComment);
-            document.querySelector('main').classList.add('visible'); // Hiển thị main khi load
-        };
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value || 'Ẩn danh';
-            const comment = document.getElementById('comment').value;
-            const date = new Date
+        submitButton.addEventListener('click', () => {
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                const li = document.createElement('li');
+                li.textContent = commentText;
+                commentsList.appendChild(li);
+                commentInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
