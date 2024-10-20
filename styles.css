@@ -1,22 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Raleway:wght@400;600&display=swap');
+
 body { 
-    background: linear-gradient(135deg, #FF6F61, #FFC371);
-    font-family: 'Poppins', sans-serif;
-    color: #333;
+    background-color: #F5F5F5; /* Nền sáng hơn */
+    font-family: 'Poppins', sans-serif; /* Phông chữ chính */
+    color: #333; /* Màu chữ */
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode {
-    background-color: #1a1a1a;
-    color: #f1f1f1;
+    background-color: #1a1a1a; /* Nền tối khi ở chế độ tối */
+    color: #f1f1f1; /* Màu chữ khi ở chế độ tối */
 }
 
 header {
-    background: rgba(255, 255, 255, 0.9);
+    background-color: #FFFFFF; /* Nền header trắng */
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-family: 'Raleway', sans-serif; /* Phông chữ tiêu đề */
+    font-size: 3rem; /* Kích thước lớn hơn */
+    color: #FF6F61; /* Màu tiêu đề */
 }
 
 nav {
@@ -32,18 +40,17 @@ nav {
 
 nav a {
     padding: 10px 20px;
-    color: #333;
+    color: #333; /* Màu chữ */
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.2rem; /* Kích thước chữ vừa phải */
     transition: color 0.3s, transform 0.3s;
     border-radius: 5px;
     margin: 0 10px;
 }
 
 nav a:hover {
-    color: #FF6F61;
-    transform: scale(1.1);
-    background: rgba(255, 111, 97, 0.2);
+    color: #FF6F61; /* Màu chữ khi hover */
+    background-color: rgba(255, 111, 97, 0.2); /* Nền nhẹ khi hover */
 }
 
 button#theme-toggle {
@@ -51,16 +58,16 @@ button#theme-toggle {
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #FF6F61;
+    background-color: #FF6F61; /* Nền nút */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: white; /* Màu chữ nút */
     transition: background-color 0.3s;
 }
 
 button#theme-toggle:hover {
-    background-color: #FFC371;
+    background-color: #FFC371; /* Màu nền khi hover */
 }
 
 main {
@@ -125,10 +132,15 @@ input, textarea {
 }
 
 button.submit-button {
-    background-color: #FF6F61;
+    background-color: #FFEB3B; /* Màu nền nút gửi bình luận */
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3
+    transition: background-color 0.3s;
+}
+
+button.submit-button:hover {
+    background-color: #FFC371; /* Màu nền khi hover */
+}
