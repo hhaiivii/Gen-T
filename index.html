@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,7 @@
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
+
         body.dark-mode {
             background-color: #1a1a1a;
             color: #f1f1f1;
@@ -76,6 +77,12 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
+            opacity: 0; /* Đặt opacity về 0 ban đầu */
+            transition: opacity 0.5s; /* Thêm hiệu ứng chuyển đổi cho opacity */
+        }
+
+        main.visible {
+            opacity: 1; /* Khi thêm class 'visible', opacity sẽ chuyển thành 1 */
         }
 
         article {
@@ -85,6 +92,12 @@
             border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s; /* Thêm hiệu ứng cho bài viết */
+        }
+
+        article:hover {
+            transform: translateY(-5px); /* Nâng bài viết lên khi hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
         }
 
         #comments-section {
@@ -113,31 +126,10 @@
             color: #777;
         }
 
-        .comment-actions {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .comment-actions button {
-            background: none;
-            border: none;
-            color: #FF6F61;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 14px;
-        }
-
         .reply-form {
             margin-top: 10px;
             padding: 10px;
             border-top: 1px solid #ddd;
-        }
-
-        .reply-list {
-            margin-top: 10px;
-            padding-left: 20px;
-            list-style-type: none;
         }
 
         input, textarea {
@@ -193,7 +185,7 @@
         </nav>
     </header>
 
-    <main id="posts">
+    <main id="posts" class="visible">
         <article>
             <h2>Bài viết đầu tiên</h2>
             <p>Đây là bài viết đầu tiên của tôi! Chào mừng đến với blog.</p>
@@ -248,32 +240,11 @@
         window.onload = function() {
             const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
             savedComments.forEach(displayComment);
+            document.querySelector('main').classList.add('visible'); // Hiển thị main khi load
         };
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value || 'Ẩn danh';
             const comment = document.getElementById('comment').value;
-            const date = new Date().toLocaleString();
-
-            const commentData = { name, comment, date };
-            displayComment(commentData);
-            saveComment(commentData);
-
-            form.reset();
-        });
-
-        function displayComment({ name, comment, date }) {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${name}</strong> <span class="comment-meta">${date}</span><p>${comment}</p>`;
-            commentsList.appendChild(li);
-        }
-
-        function saveComment(commentData) {
-            const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
-            savedComments.push(commentData);
-            localStorage.setItem('comments', JSON.stringify(savedComments));
-        }
-    </script>
-</body>
-</html>
+            const date = new Date
