@@ -1,146 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Raleway:wght@400;600&display=swap');
-
-body { 
-    background-color: #F5F5F5; /* Nền sáng hơn */
-    font-family: 'Poppins', sans-serif; /* Phông chữ chính */
-    color: #333; /* Màu chữ */
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif; /* Một font hiện đại, phù hợp với Gen Z */
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
-body.dark-mode {
-    background-color: #1a1a1a; /* Nền tối khi ở chế độ tối */
-    color: #f1f1f1; /* Màu chữ khi ở chế độ tối */
-}
-
+/* Header */
 header {
-    background-color: #FFFFFF; /* Nền header trắng */
-    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-    font-family: 'Raleway', sans-serif; /* Phông chữ tiêu đề */
-    font-size: 3rem; /* Kích thước lớn hơn */
-    color: #FF6F61; /* Màu tiêu đề */
+/* Main content area */
+main.wp-block-group {
+    margin: 0;
+    padding-top: 10vh;
+    padding-bottom: 8vh;
+    background-color: #fff;
 }
 
-nav {
+/* Columns */
+.wp-block-columns {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    gap: 1rem;
+    padding-right: var(--wp--preset--spacing--40);
+    padding-left: var(--wp--preset--spacing--40);
+    align-items: flex-start;
 }
 
-nav a {
-    padding: 10px 20px;
-    color: #333; /* Màu chữ */
-    text-decoration: none;
-    font-size: 1.2rem; /* Kích thước chữ vừa phải */
-    transition: color 0.3s, transform 0.3s;
-    border-radius: 5px;
-    margin: 0 10px;
+.wp-block-column {
+    flex: 1;
 }
 
-nav a:hover {
-    color: #FF6F61; /* Màu chữ khi hover */
-    background-color: rgba(255, 111, 97, 0.2); /* Nền nhẹ khi hover */
+.wp-block-column[style*="flex-basis:70%"] {
+    flex-basis: 70%;
 }
 
-button#theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #FF6F61; /* Nền nút */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white; /* Màu chữ nút */
-    transition: background-color 0.3s;
+.wp-block-column[style*="flex-basis:30%"] {
+    flex-basis: 30%;
 }
 
-button#theme-toggle:hover {
-    background-color: #FFC371; /* Màu nền khi hover */
+/* Image */
+.wp-block-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0; /* Đặt opacity về 0 ban đầu */
-    transition: opacity 0.5s; /* Thêm hiệu ứng chuyển đổi cho opacity */
+/* Paragraph */
+.wp-block-paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
 }
 
-main.visible {
-    opacity: 1; /* Khi thêm class 'visible', opacity sẽ chuyển thành 1 */
+.wp-block-paragraph strong {
+    color: #222;
 }
 
-article {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s; /* Thêm hiệu ứng cho bài viết */
+/* Headings */
+h3.wp-block-heading {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ff6600; /* Tạo sự nổi bật với màu cam nhẹ */
 }
 
-article:hover {
-    transform: translateY(-5px); /* Nâng bài viết lên khi hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+/* Ordered List */
+ol.wp-block-list {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-#comments-section {
-    margin-top: 30px;
-    padding: 15px;
-    border-top: 1px solid #ddd;
-    background-color: rgba(255, 255, 255, 0.95);
+ol.wp-block-list li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Comments Section */
+.wp-block-comments-query-loop {
+    background-color: #f9f9f9;
+    padding: 2rem;
     border-radius: 8px;
 }
 
-#comments-list {
-    list-style-type: none;
-    padding: 0;
+.wp-block-comments-query-loop h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
 }
 
-#comments-list li {
-    margin: 10px 0;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
+.wp-block-group {
+    margin-bottom: 1rem;
 }
 
-.comment-meta {
-    font-size: 12px;
+.wp-block-comment {
+    margin-bottom: 1.5rem;
+}
+
+.wp-block-comment-author-name {
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.wp-block-comment-date {
+    font-size: 0.875rem;
     color: #777;
 }
 
-input, textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.wp-block-comment-content {
+    margin-top: 0.5rem;
 }
 
-button.submit-button {
-    background-color: #FFEB3B; /* Màu nền nút gửi bình luận */
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
 }
 
-button.submit-button:hover {
-    background-color: #FFC371; /* Màu nền khi hover */
+/* Responsive design */
+@media (max-width: 768px) {
+    .wp-block-columns {
+        flex-direction: column;
+    }
+
+    .wp-block-column {
+        flex-basis: 100%;
+    }
+
+    main.wp-block-group {
+        padding: 5vh 2rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
 }
+
