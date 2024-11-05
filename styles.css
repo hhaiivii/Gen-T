@@ -1,4 +1,5 @@
 /* Global Styles */
+/* Global Styles */
 body {
     font-family: 'Inter', sans-serif; /* Một font hiện đại, phù hợp với Gen Z */
     line-height: 1.6;
@@ -14,59 +15,35 @@ header {
     color: #fff;
     padding: 1rem 0;
     text-align: center;
-    position: relative; /* Để đảm bảo header không bị chồng lên khi cuộn */
-    z-index: 10; /* Đưa header lên trên các phần khác */
-}
-
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 2rem 1rem;
-    transition: left 0.3s ease; /* Thêm hiệu ứng chuyển động khi mở/đóng sidebar */
-    z-index: 5; /* Đảm bảo sidebar không bị che khuất */
-}
-
-/* Sidebar links */
-.sidebar a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: #ff6600; /* Màu nền khi di chuột */
-    color: #fff; /* Màu chữ khi di chuột */
 }
 
 /* Main content area */
-main {
-    margin-left: 260px; /* Để tránh bị che khuất bởi sidebar */
+main.wp-block-group {
+    margin: 0;
     padding-top: 10vh;
     padding-bottom: 8vh;
     background-color: #fff;
-    transition: margin-left 0.3s ease; /* Thêm hiệu ứng chuyển động cho nội dung chính */
 }
 
 /* Columns */
 .wp-block-columns {
     display: flex;
     gap: 1rem;
-    padding: 0 1rem; /* Đảm bảo khoảng cách bên trong */
+    padding-right: var(--wp--preset--spacing--40);
+    padding-left: var(--wp--preset--spacing--40);
     align-items: flex-start;
 }
 
 .wp-block-column {
     flex: 1;
+}
+
+.wp-block-column[style*="flex-basis:70%"] {
+    flex-basis: 70%;
+}
+
+.wp-block-column[style*="flex-basis:30%"] {
+    flex-basis: 30%;
 }
 
 /* Image */
@@ -88,11 +65,22 @@ main {
 }
 
 /* Headings */
-h3 {
+h3.wp-block-heading {
     font-size: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
     color: #ff6600; /* Tạo sự nổi bật với màu cam nhẹ */
+}
+
+/* Ordered List */
+ol.wp-block-list {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+ol.wp-block-list li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 /* Comments Section */
@@ -102,9 +90,31 @@ h3 {
     border-radius: 8px;
 }
 
+.wp-block-comments-query-loop h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.wp-block-group {
+    margin-bottom: 1rem;
+}
+
+.wp-block-comment {
+    margin-bottom: 1.5rem;
+}
+
 .wp-block-comment-author-name {
     font-weight: bold;
     color: #ff6600;
+}
+
+.wp-block-comment-date {
+    font-size: 0.875rem;
+    color: #777;
+}
+
+.wp-block-comment-content {
+    margin-top: 0.5rem;
 }
 
 /* Footer */
@@ -125,8 +135,7 @@ footer {
         flex-basis: 100%;
     }
 
-    main {
-        margin-left: 0; /* Đặt lại margin cho các thiết bị di động */
+    main.wp-block-group {
         padding: 5vh 2rem;
     }
 
@@ -134,4 +143,3 @@ footer {
         font-size: 0.9rem;
     }
 }
-
