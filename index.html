@@ -25,6 +25,58 @@
             color: #f1f1f1;
         }
 
+        /* Sidebar */
+        #sidebar {
+            position: fixed;
+            left: -250px; /* Ẩn sidebar ra khỏi màn hình */
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 1000; /* Để sidebar nằm trên cùng */
+        }
+        #sidebar.active {
+            left: 0; /* Hiện sidebar khi có lớp active */
+        }
+        #sidebar h2 {
+            color: #FF6F61;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #sidebar ul li {
+            margin: 15px 0;
+        }
+        #sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        #sidebar ul li a:hover {
+            color: #FF6F61;
+        }
+
+        /* Nút hamburger */
+        #hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+        #hamburger div {
+            width: 30px;
+            height: 3px;
+            background: #FF6F61;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
         /* Header */
         header {
             background: rgba(255, 255, 255, 0.9);
@@ -106,43 +158,12 @@
             max-width: 800px;
             margin: 0 auto;
             animation: fadeIn 0.5s;
-            display: flex;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
         
-        /* Sidebar */
-        .sidebar {
-            width: 200px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-right: 20px;
-        }
-        .sidebar h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: #FF6F61;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin: 10px 0;
-        }
-        .sidebar ul li a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .sidebar ul li a:hover {
-            color: #FF6F61;
-        }
-
         /* Phần giới thiệu */
         .hero {
             text-align: center;
@@ -151,7 +172,6 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            flex-grow: 1;
         }
         .hero h2 {
             transition: color 0.3s;
@@ -224,118 +244,132 @@
         }
         #comments-section h3,
         #comments-section h4 {
-            transition: color 0.3s;
-        }
-        #comments-section h3:hover,
-        #comments-section h4:hover {
+            margin-bottom: 10px;
             color: #FF6F61;
         }
-        #comments-list {
-            list-style-type: none;
+        #comments-section ul {
+            list-style: none;
             padding: 0;
         }
-        #comments-list li {
-            margin: 10px 0;
+        #comments-section li {
             padding: 10px;
-            border: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        #comments-section li:last-child {
+            border: none;
+        }
+
+        /* Nút gửi bình luận */
+        #submit-comment {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #submit-comment input {
+            flex: 1;
+            padding: 10px;
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        #submit-comment button {
+            background-color: #FF6F61;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
-        #comments-list li:hover {
-            background-color: #f9f9f9;
+        #submit-comment button:hover {
+            background-color: #FFC371;
         }
-        .comment-meta {
-            font-size: 12px;
-            color: #777;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-            }
-            main {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                margin: 0;
-            }
-        }
+
     </style>
 </head>
 <body>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <h2>Tùy Chọn</h2>
+        <ul>
+            <li><a href="#community">Cộng đồng</a></li>
+            <li><a href="#updates">Cập nhật thông tin</a></li>
+            <li><a href="#schedule">Lịch thi</a></li>
+            <li><a href="#discussions">Thảo luận chung</a></li>
+            <li><a href="#submit-files">Gửi tệp tin</a></li>
+        </ul>
+    </div>
+
+    <!-- Nút hamburger -->
+    <div id="hamburger" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Header -->
     <header>
         <h1>Chuyện Gen T</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html">Giới thiệu</a>
+            <a href="#home">Trang Chủ</a>
+            <a href="#about">Giới Thiệu</a>
+            <a href="#blog">Blog</a>
         </nav>
-        <button id="theme-toggle">Chế độ tối</button>
     </header>
+
+    <button id="theme-toggle" onclick="toggleTheme()">Chuyển Đổi Chế Độ</button>
+
     <main>
-        <aside class="sidebar">
-            <h2>Tùy chọn</h2>
-            <ul>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Liên hệ</a></li>
-                <li><a href="#">Tin tức</a></li>
-                <li><a href="#">Sự kiện</a></li>
-            </ul>
-        </aside>
         <div class="hero">
-            <h2>Chào mừng đến với Chuyện Gen T</h2>
-            <p>Khám phá những câu chuyện, ý tưởng và sáng tạo của thế hệ Gen T tại đây.</p>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm...">
-                <button type="button">Tìm</button>
+            <h2>Chào Mừng Đến Với Chuyện Gen T!</h2>
+            <p>Nơi kết nối, chia sẻ và thể hiện bản thân của các bạn học sinh THPT.</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm...">
+            <button>Tìm</button>
+        </div>
+
+        <div class="blog-posts">
+            <div class="post-card">
+                <img src="post-image1.jpg" alt="Bài viết 1">
+                <h3>Bài viết 1</h3>
+                <p>Nội dung bài viết 1...</p>
+            </div>
+            <div class="post-card">
+                <img src="post-image2.jpg" alt="Bài viết 2">
+                <h3>Bài viết 2</h3>
+                <p>Nội dung bài viết 2...</p>
+            </div>
+            <!-- Thêm nhiều bài viết ở đây -->
+        </div>
+
+        <!-- Phần bình luận -->
+        <div id="comments-section">
+            <h3>Bình Luận</h3>
+            <ul>
+                <li><strong>Người dùng 1:</strong> Bình luận của người dùng 1.</li>
+                <li><strong>Người dùng 2:</strong> Bình luận của người dùng 2.</li>
+                <!-- Thêm nhiều bình luận ở đây -->
+            </ul>
+            <div id="submit-comment">
+                <input type="text" placeholder="Nhập bình luận của bạn">
+                <button>Gửi</button>
             </div>
         </div>
     </main>
-    <div class="blog-posts">
-        <div class="post-card">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 1">
-            <h3>Bài viết 1</h3>
-            <p>Mô tả ngắn về bài viết 1.</p>
-        </div>
-        <div class="post-card">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 2">
-            <h3>Bài viết 2</h3>
-            <p>Mô tả ngắn về bài viết 2.</p>
-        </div>
-        <div class="post-card">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 3">
-            <h3>Bài viết 3</h3>
-            <p>Mô tả ngắn về bài viết 3.</p>
-        </div>
-        <div class="post-card">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 4">
-            <h3>Bài viết 4</h3>
-            <p>Mô tả ngắn về bài viết 4.</p>
-        </div>
-    </div>
-    <div id="comments-section">
-        <h3>Bình luận</h3>
-        <h4>Chia sẻ suy nghĩ của bạn:</h4>
-        <ul id="comments-list">
-            <li>
-                <p><strong>Người dùng 1:</strong> Đây là bài viết tuyệt vời!</p>
-                <p class="comment-meta">Ngày đăng: 06/11/2024</p>
-            </li>
-            <li>
-                <p><strong>Người dùng 2:</strong> Cảm ơn vì đã chia sẻ!</p>
-                <p class="comment-meta">Ngày đăng: 06/11/2024</p>
-            </li>
-        </ul>
-    </div>
+
     <script>
-        const themeToggleButton = document.getElementById('theme-toggle');
-        themeToggleButton.addEventListener('click', () => {
+        // Chuyển đổi chế độ tối
+        function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            themeToggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Chế độ sáng' : 'Chế độ tối';
-        });
+        }
+
+        // Hiện/Ẩn sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
     </script>
 </body>
 </html>
