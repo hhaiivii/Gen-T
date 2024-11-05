@@ -1,5 +1,4 @@
 /* Global Styles */
-/* Global Styles */
 body {
     font-family: 'Inter', sans-serif; /* Một font hiện đại, phù hợp với Gen Z */
     line-height: 1.6;
@@ -23,6 +22,54 @@ main.wp-block-group {
     padding-top: 10vh;
     padding-bottom: 8vh;
     background-color: #fff;
+}
+
+/* Container để chứa nội dung chính và sidebar */
+.container {
+    display: flex; /* Sử dụng flexbox để sắp xếp */
+    margin: 0 2rem; /* Khoảng cách bên trái và bên phải */
+}
+
+/* Sidebar dọc */
+.sidebar {
+    width: 200px; /* Chiều rộng của sidebar dọc */
+    background-color: #f9f9f9; /* Màu nền cho sidebar */
+    padding: 1rem; /* Padding bên trong sidebar */
+    border-left: 1px solid #ddd; /* Đường viền bên trái */
+    margin-left: 2rem; /* Khoảng cách với nội dung chính */
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển động khi mở và đóng */
+    position: relative; /* Đặt vị trí của sidebar */
+}
+
+/* Hiệu ứng cho sidebar khi ẩn */
+.sidebar.hidden {
+    transform: translateX(-100%); /* Di chuyển sidebar ra ngoài */
+}
+
+/* Các mục bên trong sidebar */
+.sidebar ul {
+    list-style: none; /* Bỏ dấu chấm của danh sách */
+    padding: 0; /* Bỏ padding mặc định */
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem; /* Khoảng cách giữa các liên kết */
+}
+
+.sidebar a {
+    text-decoration: none; /* Bỏ gạch chân */
+    color: #333; /* Màu chữ cho các liên kết trong sidebar */
+    transition: color 0.3s; /* Thêm hiệu ứng chuyển đổi màu sắc */
+}
+
+.sidebar a:hover {
+    color: #ff6600; /* Màu chữ khi di chuột qua */
+}
+
+/* Nội dung chính */
+main {
+    flex-grow: 1; /* Cho phép nội dung chính chiếm không gian còn lại */
+    padding: 2rem; /* Padding cho nội dung chính */
 }
 
 /* Columns */
@@ -127,58 +174,22 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .wp-block-columns {
-        flex-direction: column;
+    .container {
+        flex-direction: column; /* Đổi chiều hướng của container trên màn hình nhỏ */
+        margin: 0; /* Bỏ margin */
     }
 
-    .wp-block-column {
-        flex-basis: 100%;
+    .sidebar {
+        width: 100%; /* Chiều rộng của sidebar trên màn hình nhỏ */
+        margin-left: 0; /* Bỏ margin bên trái */
+        border-left: none; /* Bỏ đường viền bên trái */
     }
 
     main.wp-block-group {
-        padding: 5vh 2rem;
+        padding: 5vh 2rem; /* Padding cho nội dung chính trên màn hình nhỏ */
     }
 
     footer {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* Font size cho footer trên màn hình nhỏ */
     }
-}
-/* Container để chứa nội dung chính và sidebar */
-.container {
-    display: flex; /* Sử dụng flexbox để sắp xếp */
-    margin: 0 2rem; /* Khoảng cách bên trái và bên phải */
-}
-
-/* Sidebar dọc */
-.sidebar {
-    width: 200px; /* Chiều rộng của sidebar dọc */
-    background-color: #f9f9f9; /* Màu nền cho sidebar */
-    padding: 1rem; /* Padding bên trong sidebar */
-    border-left: 1px solid #ddd; /* Đường viền bên trái */
-    margin-left: 2rem; /* Khoảng cách với nội dung chính */
-}
-
-.sidebar ul {
-    list-style: none; /* Bỏ dấu chấm của danh sách */
-    padding: 0; /* Bỏ padding mặc định */
-}
-
-.sidebar ul li {
-    margin-bottom: 1rem; /* Khoảng cách giữa các liên kết */
-}
-
-.sidebar a {
-    text-decoration: none; /* Bỏ gạch chân */
-    color: #333; /* Màu chữ cho các liên kết trong sidebar */
-    transition: color 0.3s; /* Thêm hiệu ứng chuyển đổi màu sắc */
-}
-
-.sidebar a:hover {
-    color: #ff6600; /* Màu chữ khi di chuột qua */
-}
-
-/* Nội dung chính */
-main {
-    flex-grow: 1; /* Cho phép nội dung chính chiếm không gian còn lại */
-    padding: 2rem; /* Padding cho nội dung chính */
 }
