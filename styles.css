@@ -143,3 +143,43 @@ footer {
         font-size: 0.9rem;
     }
 }
+/* Container để chứa nội dung chính và sidebar */
+.container {
+    display: flex; /* Sử dụng flexbox để sắp xếp */
+    margin: 0 2rem; /* Khoảng cách bên trái và bên phải */
+}
+
+/* Sidebar dọc */
+.sidebar {
+    width: 200px; /* Chiều rộng của sidebar dọc */
+    background-color: #f9f9f9; /* Màu nền cho sidebar */
+    padding: 1rem; /* Padding bên trong sidebar */
+    border-left: 1px solid #ddd; /* Đường viền bên trái */
+    margin-left: 2rem; /* Khoảng cách với nội dung chính */
+}
+
+.sidebar ul {
+    list-style: none; /* Bỏ dấu chấm của danh sách */
+    padding: 0; /* Bỏ padding mặc định */
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem; /* Khoảng cách giữa các liên kết */
+}
+
+.sidebar a {
+    text-decoration: none; /* Bỏ gạch chân */
+    color: #333; /* Màu chữ cho các liên kết trong sidebar */
+    transition: color 0.3s; /* Thêm hiệu ứng chuyển đổi màu sắc */
+}
+
+.sidebar a:hover {
+    color: #ff6600; /* Màu chữ khi di chuột qua */
+}
+
+/* Nội dung chính */
+main {
+    flex-grow: 1; /* Cho phép nội dung chính chiếm không gian còn lại */
+    padding: 2rem; /* Padding cho nội dung chính */
+}
+
