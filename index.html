@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="vi">
 <head>
-     <meta name="description" content="ChuyenGenT - Nơi học sinh THPT Tùng Thiện thể hiện bản thân và kết nối với cộng đồng Gen Z.">
+    <meta name="description" content="ChuyenGenT - Nơi học sinh THPT Tùng Thiện thể hiện bản thân và kết nối với cộng đồng Gen Z.">
     <meta name="keywords" content="Gen T, ChuyenGenT, THPT Tùng Thiện, Blog, Web">
     <meta name="author" content="Hoang Ha">
     <meta name="robots" content="index, follow">
@@ -31,13 +31,18 @@
             width: 250px;
             background: rgba(255, 255, 255, 0.9);
             position: fixed;
-            left: -250px; /* Bắt đầu ẩn bên trái */
+            left: 0; /* Đặt ở bên trái */
             top: 0;
             height: 100%;
-            transition: left 0.3s;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+        }
+        .sidebar h3 {
+            padding: 10px;
+            text-align: center;
+            color: #FF6F61;
+            font-size: 20px;
         }
         .sidebar a {
             display: block;
@@ -52,23 +57,12 @@
             color: #FF6F61;
         }
 
-        /* Nút mở sidebar */
-        .toggle-sidebar {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #FF6F61;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1001; /* Đảm bảo nút nằm trên các phần tử khác */
-        }
-        .toggle-sidebar:hover {
-            background-color: #FFC371;
+        /* Nội dung chính */
+        main {
+            margin-left: 250px; /* Dịch trái cho nội dung chính */
+            padding: 20px;
+            max-width: 800px;
+            animation: fadeIn 0.5s;
         }
 
         /* Header */
@@ -146,18 +140,6 @@
             transform: scale(1.05);
         }
 
-        /* Nội dung chính */
-        main {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
         /* Phần giới thiệu */
         .hero {
             text-align: center;
@@ -172,31 +154,6 @@
         }
         .hero h2:hover {
             color: #FF6F61;
-        }
-
-        /* Tìm kiếm */
-        .search-bar {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-        }
-        .search-bar input {
-            width: 80%;
-            padding: 10px;
-            border-radius: 5px 0 0 5px;
-            border: 1px solid #ddd;
-        }
-        .search-bar button {
-            padding: 10px;
-            border-radius: 0 5px 5px 0;
-            border: none;
-            background-color: #FF6F61;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .search-bar button:hover {
-            background-color: #FFC371;
         }
 
         /* Các bài viết blog */
@@ -282,126 +239,109 @@
             margin: 5px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
-            transition: border-color 0.3s;
         }
-        input:focus, textarea:focus {
-            border-color: #FF6F61;
-            outline: none;
-        }
-        button.submit-button {
-            background-color: #FF6F61;
+        button[type="submit"] {
+            background: #FF6F61;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background 0.3s;
         }
-        button.submit-button:hover {
-            background-color: #FFC371;
+        button[type="submit"]:hover {
+            background: #FFC371;
         }
-
-        /* Chia sẻ mạng xã hội */
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .share-buttons a {
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 24px;
-            color: #333;
-            transition: color 0.3s;
-        }
-        .share-buttons a:hover {
-            color: #FF6F61;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Chuyện Gen T</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html">Giới thiệu</a>
+            <a href="#gioithieu">Giới thiệu</a>
+            <a href="#bai-viet">Bài viết</a>
+            <a href="#lien-he">Liên hệ</a>
         </nav>
     </header>
-
-    <button id="theme-toggle">Chuyển sang Chế độ Tối</button>
-
+    <div class="sidebar">
+        <h3>Danh mục</h3>
+        <a href="#congdong">Cộng đồng</a>
+        <a href="#capnhat">Cập nhật thông tin</a>
+        <a href="#lichthi">Lịch thi</a>
+        <a href="#sukien">Sự kiện</a>
+        <a href="#thaoluan">Thảo luận chung</a>
+        <a href="#gui-file">Gửi tệp tin</a>
+    </div>
     <main>
-        <section class="hero">
-            <h2>Chào Mừng Đến Với Chuyện Gen T</h2>
-            <p>Khám phá hành trình của chúng ta trong thời đại 4.0.</p>
+        <button id="theme-toggle">Chuyển chế độ</button>
+        <section class="hero" id="gioithieu">
+            <h2>Giới thiệu về Chuyện Gen T</h2>
+            <p>Chuyện Gen T là nơi chúng ta cùng nhau khám phá, học hỏi và phát triển. Hãy cùng nhau tạo ra một cộng đồng tích cực!</p>
         </section>
-
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm bài viết...">
-            <button>🔍</button>
-        </div>
-
-        <section class="blog-posts">
-            <div class="post-card">
-                <img src="post-image-1.jpg" alt="Post Image 1">
-                <h3>Bài Viết 1</h3>
-                <p>Mô tả ngắn về bài viết 1.</p>
+        <section id="bai-viet">
+            <h2>Bài viết nổi bật</h2>
+            <div class="blog-posts">
+                <div class="post-card">
+                    <img src="image1.jpg" alt="Hình ảnh bài viết 1">
+                    <h3>Tiêu đề bài viết 1</h3>
+                    <p>Mô tả ngắn về bài viết 1.</p>
+                </div>
+                <div class="post-card">
+                    <img src="image2.jpg" alt="Hình ảnh bài viết 2">
+                    <h3>Tiêu đề bài viết 2</h3>
+                    <p>Mô tả ngắn về bài viết 2.</p>
+                </div>
+                <div class="post-card">
+                    <img src="image3.jpg" alt="Hình ảnh bài viết 3">
+                    <h3>Tiêu đề bài viết 3</h3>
+                    <p>Mô tả ngắn về bài viết 3.</p>
+                </div>
             </div>
-            <div class="post-card">
-                <img src="post-image-2.jpg" alt="Post Image 2">
-                <h3>Bài Viết 2</h3>
-                <p>Mô tả ngắn về bài viết 2.</p>
-            </div>
-            <!-- Thêm bài viết khác tại đây -->
         </section>
-
         <section id="comments-section">
             <h3>Bình luận</h3>
-            <div>
-                <input type="text" placeholder="Tên của bạn">
-                <textarea placeholder="Nội dung bình luận"></textarea>
-                <button class="submit-button">Gửi Bình Luận</button>
-            </div>
             <ul id="comments-list">
-                <!-- Các bình luận sẽ được thêm vào đây -->
+                <!-- Danh sách bình luận sẽ được chèn vào đây bằng JavaScript -->
             </ul>
+            <h4>Thêm bình luận:</h4>
+            <form id="comment-form">
+                <input type="text" id="comment-name" placeholder="Tên của bạn" required>
+                <textarea id="comment-text" placeholder="Bình luận của bạn" required></textarea>
+                <button type="submit">Gửi</button>
+            </form>
         </section>
-
-        <div class="share-buttons">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <!-- Thêm nút chia sẻ khác tại đây -->
-        </div>
     </main>
-
     <script>
-        const themeToggleButton = document.getElementById('theme-toggle');
-        themeToggleButton.addEventListener('click', () => {
+        // Chuyển đổi chế độ sáng/tối
+        const toggleButton = document.getElementById('theme-toggle');
+        toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            themeToggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Chuyển sang Chế độ Sáng' : 'Chuyển sang Chế độ Tối';
         });
 
-        document.querySelector('.submit-button').addEventListener('click', () => {
-            const name = document.querySelector('input').value;
-            const comment = document.querySelector('textarea').value;
-            if (name && comment) {
-                const commentList = document.getElementById('comments-list');
-                const li = document.createElement('li');
-                li.innerHTML = <strong>${name}</strong><span class="comment-meta"> vừa bình luận</span><p>${comment}</p><div class="comment-actions"><button>Xóa</button></div>;
-                commentList.appendChild(li);
-                document.querySelector('input').value = '';
-                document.querySelector('textarea').value = '';
-            }
-        });
+        // Xử lý bình luận
+        const commentForm = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
 
-        // Thêm sự kiện cho nút xóa bình luận
-        document.getElementById('comments-list').addEventListener('click', (event) => {
-            if (event.target.tagName === 'BUTTON') {
-                event.target.parentElement.parentElement.remove();
-            }
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('comment-name').value;
+            const text = document.getElementById('comment-text').value;
+
+            const newComment = document.createElement('li');
+            newComment.innerHTML = `<strong>${name}</strong>: ${text}<div class="comment-meta">${new Date().toLocaleString()}</div>`;
+            commentsList.appendChild(newComment);
+
+            // Xóa nội dung form sau khi gửi
+            commentForm.reset();
         });
     </script>
 </body>
